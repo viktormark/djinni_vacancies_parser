@@ -28,6 +28,7 @@ def save_sent_vacancies(sent_vacancies):
         file.write('\n'.join(sent_vacancies))
 
 
+
 def check_for_new_vacancies():
     sent_vacancies = load_sent_vacancies()
 
@@ -40,8 +41,8 @@ def check_for_new_vacancies():
             vacancies = soup.find_all('li', class_='list-jobs__item')
 
             for vacancy in vacancies:
-                vacancy_title = vacancy.find('div', class_='list-jobs__title').text.strip()
-                vacancy_link = vacancy.find('a', class_='profile').get('href')
+                vacancy_title = vacancy.find('a', class_='h3 job-list-item__link').text.strip()
+                vacancy_link = vacancy.find('a', class_='h3 job-list-item__link').get('href')
                 vacancy_info = f"vacancy: {vacancy_title}\nLink: https://djinni.co{vacancy_link}\n"
 
 
@@ -53,7 +54,7 @@ def check_for_new_vacancies():
         except Exception as e:
             print(f"Error occurred: {e}")
 
-        time.sleep(15)
+        time.sleep(5)
 
 
 if __name__ == '__main__':
